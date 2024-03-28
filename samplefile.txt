@@ -1,5 +1,3 @@
-import java.nio.charset.StandardCharsets;
-
 public class TextToHex {
     public static void main(String[] args) {
         String text = "Hello, World!";
@@ -9,21 +7,13 @@ public class TextToHex {
     }
 
     public static String stringToHex(String text) {
-        byte[] bytes = text.getBytes(StandardCharsets.UTF_8);
         StringBuilder hexString = new StringBuilder();
 
-        for (byte b : bytes) {
-            // Convert byte to unsigned integer before formatting
-            int unsignedByte = b & 0xff;
-            // Convert unsigned integer to hexadecimal
-            String hex = Integer.toHexString(unsignedByte);
-            // Ensure the hex representation is two characters long
-            if (hex.length() == 1) {
-                hex = "0" + hex;
-            }
-            hexString.append(hex);
+        for (char ch : text.toCharArray()) {
+            // Convert each character to its hexadecimal representation
+            hexString.append(String.format("%02X", (int) ch));
         }
 
-        return hexString.toString().toUpperCase(); // Convert to uppercase for consistency
+        return hexString.toString();
     }
 }
