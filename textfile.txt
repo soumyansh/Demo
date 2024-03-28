@@ -1,2 +1,18 @@
-akjhalkjdhlw
-kjjkjhkh
+public class TextToHex {
+    public static void main(String[] args) {
+        String text = "Hello, World!";
+        String hex = stringToHex(text);
+        System.out.println("Text: " + text);
+        System.out.println("Hex: " + hex);
+    }
+
+    public static String stringToHex(String text) {
+        StringBuilder hexString = new StringBuilder();
+
+        for (char ch : text.toCharArray()) {
+            hexString.append(String.format("%02X", (int) ch));
+        }
+
+        return hexString.toString();
+    }
+}
